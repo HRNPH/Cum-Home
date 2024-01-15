@@ -1,0 +1,19 @@
+version: '3.8'
+volumes:
+  postgres-db:
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '6500:5432'
+    volumes:
+      - postgres-db:/media/hrnph/drive2/storages/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 5s
+      timeout: 5s
+      retries: 10
