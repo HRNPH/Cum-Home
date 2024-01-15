@@ -1,0 +1,14 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-n8n
+    ports:
+      - '6500:5432'
+    restart: always
+    env_file:
+      - ./envs/n8n.env
+    volumes:
+      - postgres-db-n8n:/media/hrnph/drive2/storages/postgresql/data
+volumes:
+  postgres-db-n8n:
