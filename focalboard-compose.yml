@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  app:
+    image: mattermost/focalboard
+    container_name: focalboard
+    depends_on:
+      - focalboard-db
+    expose:
+      - 8000
+    ports:
+      - "8002:8000" # change the port to 8002 for host access
+    environment:
+      - VIRTUAL_HOST=localhost
+      - VIRTUAL_PORT=8000
+      - VIRTUAL_PROTO=http
+    volumes:
+      - "./config/focalboard/config.json:/opt/focalboard/config.json"
+      - fbdata:/opt/focalboard/data
+    restart: always
+    networks:
+      - default
+
+  focalboard-db:
+    image: postgres:latest
+    container_name: focalboard-postgres
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: boards
+      POSTGRES_USER: boardsuser
+      POSTGRES_PASSWORD: boardsuser-password
+
+volumes:
+  fbdata:
+  pgdata:
