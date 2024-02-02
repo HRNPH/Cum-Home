@@ -8,6 +8,7 @@ services:
   postgres:
     image: postgres:11
     restart: always
+    container_name: n8n_postgres
     environment:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
