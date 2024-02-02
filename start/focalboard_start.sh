@@ -1,2 +1,2 @@
 #!/bin/zsh
-sudo docker compose -f ./focalboard-compose.yml u -dp
+sudo docker compose -f ./focalboard-compose.yml up -dp
