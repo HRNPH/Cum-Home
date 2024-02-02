@@ -1,2 +1,2 @@
 #!/bin/zsh
-sudo docker compose -f ./focalboard-compose.yml up $1 -p focalboard
+sudo docker compose -p focalboard -f ./focalboard-compose.yml up $1
